@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body { font-family: sans-serif; padding: 1rem; }
+    label { display: flex; align-items: flex-start; gap: 0.6rem; margin-bottom: 0.75rem; cursor: pointer; line-height: 1.5; }
+    input[type="checkbox"] { margin-top: 0.2rem; width: 1.1rem; height: 1.1rem; flex-shrink: 0; cursor: pointer; }
+    .done { text-decoration: line-through; color: #888; }
+  </style>
+</head>
+<body>
+
+<label><input type="checkbox" onchange="save(this)"> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</label>
+<label><input type="checkbox" onchange="save(this)"> Ut enim ad minim veniam, quis nostrud exercitation ullamco.</label>
+<label><input type="checkbox" onchange="save(this)"> Duis aute irure dolor in reprehenderit in voluptate velit esse.</label>
+<label><input type="checkbox" onchange="save(this)"> Excepteur sint occaecat cupidatat non proident deserunt mollit.</label>
+<label><input type="checkbox" onchange="save(this)"> Sed ut perspiciatis unde omnis iste natus error sit voluptatem.</label>
+<label><input type="checkbox" onchange="save(this)"> Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit.</label>
+<label><input type="checkbox" onchange="save(this)"> Neque porro quisquam est qui dolorem ipsum quia dolor sit amet.</label>
+<label><input type="checkbox" onchange="save(this)"> Ut labore et dolore magnam aliquam quaerat voluptatem animi.</label>
+<label><input type="checkbox" onchange="save(this)"> Quis autem vel eum iure reprehenderit qui in ea voluptate velit.</label>
+<label><input type="checkbox" onchange="save(this)"> At vero eos et accusamus et iusto odio dignissimos ducimus.</label>
+
+<script>
+  const boxes = document.querySelectorAll('input[type="checkbox"]');
+
+  // Load saved state
+  boxes.forEach((box, i) => {
+    box.checked = localStorage.getItem('cb-' + i) === 'true';
+    box.closest('label').classList.toggle('done', box.checked);
+  });
+
+  function save(box) {
+    const i = [...boxes].indexOf(box);
+    localStorage.setItem('cb-' + i, box.checked);
+    box.closest('label').classList.toggle('done', box.checked);
+  }
+</script>
+</body>
+</html>
