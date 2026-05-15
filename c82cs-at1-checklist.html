@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body { font-family: sans-serif; padding: 1rem; }
+    h4 { margin: 1.25rem 0 0.5rem; }
+    label { display: flex; align-items: flex-start; gap: 0.6rem; margin-bottom: 0.75rem; cursor: pointer; line-height: 1.5; }
+    input[type="checkbox"] { margin-top: 0.2rem; width: 1.1rem; height: 1.1rem; flex-shrink: 0; cursor: pointer; }
+    .done { text-decoration: line-through; color: #888; }
+
+    @media (prefers-color-scheme: dark) {
+      body { background: #1a1a1a; color: #e8e8e8; }
+      .done { color: #666; }
+    }
+  </style>
+</head>
+<body>
+
+<h4>Main Composition</h4>
+<label><input type="checkbox" onchange="save(this)"> I have composed the main Composition, and it fulfils all requirements.</label>
+<label><input type="checkbox" onchange="save(this)"> I have exported the Composition as a WAV file and renamed it as "LASTNAME Firstname Composition Title.wav".</label>
+<label><input type="checkbox" onchange="save(this)"> I have attached a copyright notice to it.</label>
+<label><input type="checkbox" onchange="save(this)"> I have saved a copy of the DAW session as "LASTNAME Firstname Composition Title.logicx" or .als into the submission folder.</label>
+<label><input type="checkbox" onchange="save(this)"> I have run File > Project Management > Clean Up… to reduce the Logic file's size.</label>
+
+<h4>Variation</h4>
+<label><input type="checkbox" onchange="save(this)"> I have composed the Variation, and it fulfils all requirements.</label>
+<label><input type="checkbox" onchange="save(this)"> I have exported the Variation as a WAV file and renamed it to "LASTNAME Firstname Composition Title.wav".</label>
+<label><input type="checkbox" onchange="save(this)"> I have attached a copyright notice to it.</label>
+<label><input type="checkbox" onchange="save(this)"> I have saved a copy of the DAW session as "LASTNAME Firstname Composition Title.logicx" or .als into the submission folder.</label>
+<label><input type="checkbox" onchange="save(this)"> I have run File > Project Management > Clean Up… to reduce the Logic file's size.</label>
+
+<h4>Documentation</h4>
+<label><input type="checkbox" onchange="save(this)"> I have written a brief write-up of my compositional decisions and context for the pieces.</label>
+
+<h4>Putting it altogether</h4>
+<label><input type="checkbox" onchange="save(this)"> I have created a folder called "LASTNAME Firstname AT1".</label>
+<label><input type="checkbox" onchange="save(this)"> I have placed the two WAV files, and the two DAW sessions into the file.</label>
+<label><input type="checkbox" onchange="save(this)"> I have compressed the folder into a .zip folder.</label>
+<label><input type="checkbox" onchange="save(this)"> I have read and agreed to the Learner Declaration.</label>
+<label><input type="checkbox" onchange="save(this)"> I have submitted before 22 May 11:59pm 🎉</label>
+
+<script>
+  const boxes = document.querySelectorAll('input[type="checkbox"]');
+
+  boxes.forEach((box, i) => {
+    box.checked = localStorage.getItem('cb-' + i) === 'true';
+    box.closest('label').classList.toggle('done', box.checked);
+  });
+
+  function save(box) {
+    const i = [...boxes].indexOf(box);
+    localStorage.setItem('cb-' + i, box.checked);
+    box.closest('label').classList.toggle('done', box.checked);
+  }
+</script>
+</body>
+</html>
